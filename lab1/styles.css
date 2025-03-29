@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header nav {
+    display: flex;
+    gap: 15px;
+}
+
+header nav button {
+    background-color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px; 
+}
+
+header nav button:hover {
+    background-color: gray; 
+}
+
+
+main {
+    padding: 20px;
+}
+
+
+.filters, .book-list {
+    margin-bottom: 20px;
+}
+
+.filters input, .filters select {
+    margin-right: 10px;
+}
+
+
+form {
+    max-width: 400px;
+    margin: auto;
+}
+
+form input, form select, form button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box; /* zeby wszystkie boxy mialy ta sama szerokosc */
+}

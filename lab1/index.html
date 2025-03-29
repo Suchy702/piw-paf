@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>EasyBook - Sprzedaż Książek</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>EasyBook</h1>
+    <nav>
+        <button>Logowanie/Wylogowanie</button>
+        <button>Koszyk</button>
+    </nav>
+</header>
+
+<main>
+    <section class="filters">
+        <h2>Wyszukiwanie książek</h2>
+        <form id="search-form">
+            <input type="text" placeholder="Tytuł lub autor" name="query">
+            <select name="category">
+                <option value="">Wszystkie kategorie</option>
+                <option value="dramat">Kryminał</option>
+                <option value="komedia">Biografia</option>
+            </select>
+            <button type="submit">Szukaj</button>
+        </form>
+    </section>
+
+    <section class="book-list">
+        <h2>Lista książek</h2>
+        <ul>
+            <li>
+                <h3>Niebieska ksiazka Cormena</h3>
+                <p>Autor: Cormen</p>
+                <p>Kategoria: Dramat</p>
+            </li>
+            <li>
+                <h3>Kurs C++</h3>
+                <p>Autor: Nieznany</p>
+                <p>Kategoria: komedia</p>
+            </li>
+        </ul>
+    </section>
+</main>
+
+</body>
+</html>
