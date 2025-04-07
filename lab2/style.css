@@ -1,0 +1,267 @@
+:root {
+    --color-bg: #f5f5f5;
+    --color-text: #333;
+    --color-primary: #4285f4;
+    --color-primary-hover: #3367d6;
+    --color-secondary: #757575;
+    --color-secondary-hover: #616161;
+    --color-danger: #f44336;
+    --color-danger-hover: #d32f2f;
+    --color-task-border: #e0e0e0;
+    --color-task-hover: #f9f9f9;
+    --color-task-muted: #888;
+    --color-task-light: #f8f9fa;
+    --color-overlay: rgba(0, 0, 0, 0.5);
+    --color-white: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.todo-card {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.card-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Pole wprowadzania i przycisk */
+.input-group {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--color-primary);
+}
+
+.input-group button {
+    padding: 10px 20px;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.input-group button:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.section {
+    margin-top: 25px;
+}
+
+.section h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #555;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-task-border);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.task-item:hover {
+    background-color: var(--color-task-hover);
+}
+
+.task-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 1;
+    cursor: pointer;
+}
+
+.task-text {
+    margin-right: 10px;
+}
+
+.task-date {
+    color: #777;
+    font-size: 14px;
+    margin-left: 12px;
+}
+
+.btn-delete {
+    background-color: var(--color-danger);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: var(--color-danger-hover);
+}
+
+.completed {
+    text-decoration: line-through;
+    color: var(--color-task-muted);
+}
+
+/* zmiana koloru task-item w koszu */
+.trash-list .task-item {
+    background-color: var(--color-task-light);
+    color: var(--color-task-muted);
+}
+
+.undo-section {
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    padding: 8px 16px;
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-secondary-hover);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 500px;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modalOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-overlay);
+    z-index: 5;
+}
+
+.modalOverlay.show {
+    display: block;
+}
+
+.modal-content {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.modal-header {
+    background-color: var(--color-danger);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 18px;
+}
+
+.close-btn {
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #eee;
+}
+
+.modal-footer button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: var(--color-danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--color-danger-hover);
+}
