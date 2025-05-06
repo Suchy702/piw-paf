@@ -1,4 +1,3 @@
-
 import {
   isRouteErrorResponse,
   Links,
@@ -8,6 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { BookProvider } from "./context/BookContext";
+import { AuthProvider } from "./context/AuthContext";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 
@@ -31,17 +31,21 @@ export function Layout({ children }) {
   return (
     <html lang="pl">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
       <body>
-        <BookProvider>
-          <Navbar />
-          <main className="content">
-            {children}
-          </main>
-          <Footer />
-        </BookProvider>
+        <AuthProvider>
+          <BookProvider>
+            <Navbar />
+            <main className="content">
+              {children}
+            </main>
+            <Footer />
+          </BookProvider>
+        </AuthProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -70,11 +74,11 @@ export function ErrorBoundary({ error }) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <main className="error-container">
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className="error-stack">
           <code>{stack}</code>
         </pre>
       )}

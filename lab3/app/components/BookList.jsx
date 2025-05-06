@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useBookContext } from "../context/BookContext";
+import { Link } from "react-router";
 
 export function BookList() {
-  const { books } = useBookContext();
+  const { books, loading, isBookOwner, deleteBook } = useBookContext();
   const [authorFilter, setAuthorFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("");
 
@@ -14,9 +15,22 @@ export function BookList() {
            (genreFilter === "" || book.genre === genreFilter);
   });
 
+  const handleDelete = async (id) => {
+    if (window.confirm("Czy na pewno chcesz usunąć tę książkę?")) {
+      try {
+        await deleteBook(id);
+      } catch (error) {
+        alert(`Błąd podczas usuwania: ${error.message}`);
+      }
+    }
+  };
+
+  if (loading) {
+    return <div className="loading">Ładowanie książek...</div>;
+  }
+
   return (
     <div className="book-list-container">
-      <h2>Lista książek</h2>
       <div className="filters">
         <div className="filter-group">
           <label htmlFor="author-filter">Filtruj po autorze:</label>
@@ -47,6 +61,7 @@ export function BookList() {
         </div>
       </div>
 
+      <h2>Lista książek</h2>
       {filteredBooks.length === 0 ? (
         <p>Nie znaleziono książek spełniających kryteria.</p>
       ) : (
@@ -56,6 +71,14 @@ export function BookList() {
               <h3>{book.title}</h3>
               <p><strong>Autor:</strong> {book.author}</p>
               <p><strong>Gatunek:</strong> {book.genre}</p>
+              {book.userName && <p><strong>Dodano przez:</strong> {book.userName}</p>}
+              
+              {isBookOwner(book.userId) && (
+                <div className="book-actions">
+                  <Link to={`/edit/${book.id}`} className="edit-btn">Edytuj</Link>
+                  <button onClick={() => handleDelete(book.id)} className="delete-btn">Usuń</button>
+                </div>
+              )}
             </li>
           ))}
         </ul>
